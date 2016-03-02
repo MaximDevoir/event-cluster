@@ -1,0 +1,50 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.zip
+*~
+
+# Optional npm cache directory
+.npm
+
+# Sass
+.sass-cache/
+*.css.map
+
+# OS and Editor generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+._*
+.cache
+.idea
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+ehthumbs.db
+Thumbs.db
+nbproject
+npm-debug.log
+npm-debug.log*
+
+.jshintrc
+
+
+# Folders to ignore
+bower_components
+node_modules
+coverage
+
+# Files to ignore
+README.html
