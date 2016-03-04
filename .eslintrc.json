@@ -126,7 +126,7 @@
     "no-trailing-spaces": 1,
     "no-underscore-dangle": 1,
     "one-var": [1, "never"],
-    "padded-blocks": [1, "never"],
+    "padded-blocks": [2, "never"],
     "quote-props": [1, "as-needed"],
     "quotes": [2, "single", "avoid-escape"],
     "semi": [2, "always"],
