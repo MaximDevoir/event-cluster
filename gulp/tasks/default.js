@@ -15,5 +15,21 @@ gulp.task("lint:js", () => {
       fix: true
     }))
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(eslint.failAfterError())
+    .pipe(eslint.result(function (result) {
+      const {filePath, warningCount, errorCount} = result;
+      const fileStatus = () => {
+        if(warningCount + errorCount === 0) {
+          return gutil.colors.green('GOOD');
+        } else if(errorCount) {
+          return gutil.colors.red('BAD ');
+        } else if(warningCount) {
+          return gutil.colors.yellow('WARN');
+        }
+
+        return 'No Status';
+      };
+
+      gutil.log(fileStatus(), filePath);
+    }));
 });
