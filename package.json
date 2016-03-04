@@ -7,10 +7,12 @@
     "registry": "http://localhost:4873/"
   },
   "scripts": {
-    "build": "babel src -w -d dist",
+    "build": "babel src -d dist",
     "lint": "gulp lint:js",
     "test": "mocha --compilers js:babel-register test/eventhandler.spec.js",
-    "codecov": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha -- --recursive --check-leaks --compilers js:babel-register test/eventhandler.spec.js"
+    "codecov": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha -- --recursive --check-leaks --compilers js:babel-register test/eventhandler.spec.js",
+    "build-watch": "babel src -w -d dist",
+    "test-watch": "mocha --watch --compilers js:babel-register test/eventhandler.spec.js"
   },
   "author": "Maxim Devoir",
   "license": "CC0",

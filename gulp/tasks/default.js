@@ -9,6 +9,10 @@ gulp.task('default', () => {
   return gutil.log('Gulp is running!');
 });
 
+gulp.task('lint-watch', () => {
+  gulp.watch(config.js.src, ['lint:js']);
+});
+
 gulp.task("lint:js", () => {
   return gulp.src(config.js.src)
     .pipe(eslint({
