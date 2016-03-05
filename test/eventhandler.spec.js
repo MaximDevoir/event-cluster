@@ -175,7 +175,6 @@ describe('EventHandler', () => {
       });
     });
 
-
     it('executes listeners of event', () => {
       eventHandler.fire('foo');
       returns.should.eql([true, false]);
