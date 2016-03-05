@@ -31,7 +31,7 @@ gulp.task("lint:js", () => {
           return gutil.colors.yellow('WARN');
         }
 
-        return 'No Status';
+        return 'NOSTAT';
       };
 
       gutil.log(fileStatus(), filePath);
