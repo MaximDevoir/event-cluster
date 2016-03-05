@@ -89,7 +89,7 @@ class EventHandler {
     if(this.cluster && clusterCode !== '$clusterFire__') {
       this.cluster.fire(...arguments);
 
-      // End execution to avoid double-fire
+      // End execution to avoid double-execution
       return this;
     } else if(this.cluster && clusterCode === '$clusterFire__') {
       clusterEvent = name.slice('$clusterFire__'.length);
