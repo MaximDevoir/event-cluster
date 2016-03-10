@@ -3,6 +3,7 @@ const EventCluster = require('./EventCluster');
 const toString = Object.prototype.toString;
 
 class EventHandler {
+
   constructor(clusterIdentifier, clusterContext) {
     this.events = {};
     this.cluster = null;
@@ -27,7 +28,7 @@ class EventHandler {
    * @param {String}   name    Name of event
    * @param {Function} fn      Executed when event for name is fired
    * @param {Object}   context Reference object
-   * @return {this}            Returns this
+   * @return {EventListener}   Returns this
    */
   addListener(name, fn, context) {
     const listeners = this.getListeners(name);
@@ -41,7 +42,7 @@ class EventHandler {
    * Removes all instances of listener from an event
    * @param  {String}   name Event name
    * @param  {Function} fn   The function to remove
-   * @return {this}          Returns this
+   * @return {EventHandler}  Returns this
    */
   removeListener(name, fn) {
     const listeners = this.getListeners(name);
@@ -56,9 +57,8 @@ class EventHandler {
 
   /**
    * Remove a single function from a listener
-   * @param  {String}   name The name of the event to remove func from
-   * @param  {Function} fn   The function to remove
-   * @return {this}          Returns this
+   * @param  {String} name  The name of the event to remove func from
+   * @return {EventHandler} Returns this
    */
   removeEvent(name) {
     delete this.events[name];
@@ -67,7 +67,7 @@ class EventHandler {
 
   /**
    * Resets all listeners
-   * @return {this} Returns this
+   * @return {EventHandler} Returns this
    */
   removeAllEvents() {
     this.events = {};
@@ -80,7 +80,7 @@ class EventHandler {
    * @param {Object}    thisArg Reference
    * @param {...args}   args    Any other arguments passed will be applied to
    *                            the listening functions.
-   * @return {this}             Returns this
+   * @return {EventHandler}     Returns this
    */
   fire(name, thisArg, ...args) {
     let clusterCode = name.substring(0, '$clusterFire__'.length);
@@ -99,7 +99,6 @@ class EventHandler {
     listeners.forEach(listener => {
       listener.apply(thisArg, args);
     });
-
     return this;
   }
 }

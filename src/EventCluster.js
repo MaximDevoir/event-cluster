@@ -7,7 +7,6 @@ class EventCluster {
     this.cluster = context[identifier];
     this.cluster.push(this.EventHandler);
 
-
     /**
      * Fire a clustered event. Relays the arguments to the fire method within each
      * clustered EventListener.
@@ -21,7 +20,7 @@ class EventCluster {
           value.fire('$clusterFire__' + name, ...args);
         }
       });
-    }
+    };
   }
 }
 
