@@ -45,5 +45,11 @@
     "plugins": [
       "add-module-exports"
     ]
+  },
+  "dependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.0",
+    "eslint": "^2.4.0"
   }
 }
