@@ -3,9 +3,6 @@
   "version": "0.12.5",
   "description": "A simple event handler with the ability to cluster events",
   "main": "dist/EventHandler.js",
-  "publishConfig": {
-    "registry": "http://localhost:4873/"
-  },
   "scripts": {
     "build": "babel src -d dist",
     "lint": "gulp lint:js",
