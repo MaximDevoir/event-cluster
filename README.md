@@ -18,3 +18,6 @@ getListeners will create an event if the requested event does not exist.
 
 # TODO
 * Add clustering ability to individual events.
+
+# NOTES
+* This module **does not** listen to or create events on any browser or Node instance.
