@@ -2,6 +2,10 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * EventCluster
+ */
+
 var EventCluster = function EventCluster(EventHandler, identifier, context) {
   _classCallCheck(this, EventCluster);
 
@@ -14,9 +18,9 @@ var EventCluster = function EventCluster(EventHandler, identifier, context) {
   /**
    * Fire a clustered event. Relays the arguments to the fire method within each
    * clustered EventListener.
-   * @param  {[type]}    name [description]
-   * @param  {...[type]} args [description]
-   * @return {[type]}         [description]
+   * @param  {String}    name Name of event
+   * @param  {...*} args Argumens to pass onto listeners
+   * @return {undefined} Nothing is returned
    */
   this.fire = function (name) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {

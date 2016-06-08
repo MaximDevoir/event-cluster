@@ -6,6 +6,10 @@ var EventListener = require('./EventListener');
 var EventCluster = require('./EventCluster');
 var toString = Object.prototype.toString;
 
+/**
+ * EventHandler
+ */
+
 var EventHandler = function () {
   function EventHandler(clusterIdentifier, clusterContext) {
     _classCallCheck(this, EventHandler);
@@ -35,7 +39,7 @@ var EventHandler = function () {
    * @param {String}   name    Name of event
    * @param {Function} fn      Executed when event for name is fired
    * @param {Object}   context Reference object
-   * @return {this}            Returns this
+   * @return {EventListener}   Returns this
    */
 
 
@@ -51,7 +55,7 @@ var EventHandler = function () {
    * Removes all instances of listener from an event
    * @param  {String}   name Event name
    * @param  {Function} fn   The function to remove
-   * @return {this}          Returns this
+   * @return {EventHandler}  Returns this
    */
 
 
@@ -68,9 +72,8 @@ var EventHandler = function () {
 
   /**
    * Remove a single function from a listener
-   * @param  {String}   name The name of the event to remove func from
-   * @param  {Function} fn   The function to remove
-   * @return {this}          Returns this
+   * @param  {String} name  The name of the event to remove func from
+   * @return {EventHandler} Returns this
    */
 
 
@@ -81,7 +84,7 @@ var EventHandler = function () {
 
   /**
    * Resets all listeners
-   * @return {this} Returns this
+   * @return {EventHandler} Returns this
    */
 
 
@@ -96,7 +99,7 @@ var EventHandler = function () {
    * @param {Object}    thisArg Reference
    * @param {...args}   args    Any other arguments passed will be applied to
    *                            the listening functions.
-   * @return {this}             Returns this
+   * @return {EventHandler}     Returns this
    */
 
 
@@ -113,7 +116,7 @@ var EventHandler = function () {
 
       (_cluster = this.cluster).fire.apply(_cluster, arguments);
 
-      // End execution to avoid double-fire
+      // End execution to avoid double-execution
       return this;
     } else if (this.cluster && clusterCode === '$clusterFire__') {
       clusterEvent = name.slice('$clusterFire__'.length);
@@ -123,7 +126,6 @@ var EventHandler = function () {
     listeners.forEach(function (listener) {
       listener.apply(thisArg, args);
     });
-
     return this;
   };
 

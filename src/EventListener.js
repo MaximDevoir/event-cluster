@@ -1,3 +1,6 @@
+/**
+ * EventListener
+ */
 class EventListener {
 
   constructor(EventHandler, name, fn) {

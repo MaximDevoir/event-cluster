@@ -1,3 +1,6 @@
+/**
+ * EventCluster
+ */
 class EventCluster {
 
   constructor(EventHandler, identifier, context) {
@@ -10,9 +13,9 @@ class EventCluster {
     /**
      * Fire a clustered event. Relays the arguments to the fire method within each
      * clustered EventListener.
-     * @param  {[type]}    name [description]
-     * @param  {...[type]} args [description]
-     * @return {[type]}         [description]
+     * @param  {String}    name Name of event
+     * @param  {...*} args Argumens to pass onto listeners
+     * @return {undefined} Nothing is returned
      */
     this.fire = (name, ...args) => {
       self.cluster.forEach(function(value) {

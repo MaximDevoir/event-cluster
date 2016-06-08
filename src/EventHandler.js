@@ -2,6 +2,9 @@ const EventListener = require('./EventListener');
 const EventCluster = require('./EventCluster');
 const toString = Object.prototype.toString;
 
+/**
+ * EventHandler
+ */
 class EventHandler {
 
   constructor(clusterIdentifier, clusterContext) {

@@ -2,6 +2,10 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * EventListener
+ */
+
 var EventListener = function () {
   function EventListener(EventHandler, name, fn) {
     _classCallCheck(this, EventListener);
