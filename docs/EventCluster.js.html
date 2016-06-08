@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>EventListener - Documentation</title>
+    <title>EventCluster.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,236 +28,49 @@
 
 <div id="main">
     
-    <h1 class="page-title">EventListener</h1>
+    <h1 class="page-title">EventCluster.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        EventListener
-        </h2>
-        
-            <div class="class-description"><p>EventListener</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="EventListener"><span class="type-signature"></span>new EventListener<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="EventListener.js.html">EventListener.js</a>, <a href="EventListener.js.html#line4">line 4</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="destroy"><span class="type-signature"></span>destroy<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Destroys the listener from the applied EventListener</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="EventListener.js.html">EventListener.js</a>, <a href="EventListener.js.html#line16">line 16</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">undefined</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * EventCluster
+ */
+class EventCluster {
+
+  constructor(EventHandler, identifier, context) {
+    let self = this;
+    this.EventHandler = EventHandler;
+    context[identifier] = context[identifier] || [];
+    this.cluster = context[identifier];
+    this.cluster.push(this.EventHandler);
+
+    /**
+     * Fire a clustered event. Relays the arguments to the fire method within each
+     * clustered EventListener.
+     * @param  {String}    name Name of event
+     * @param  {...*} args Argumens to pass onto listeners
+     * @return {undefined} Nothing is returned
+     */
+    this.fire = (name, ...args) => {
+      self.cluster.forEach(function(value) {
+        if(value.events.hasOwnProperty(name)){
+          value.fire('$clusterFire__' + name, ...args);
+        }
+      });
+    };
+  }
+}
+
+module.exports = EventCluster;
+</code></pre>
+        </article>
+    </section>
 
 
 

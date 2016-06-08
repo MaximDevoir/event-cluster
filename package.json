@@ -4,7 +4,7 @@
   "description": "A simple event handler with the ability to cluster events",
   "main": "dist/EventHandler.js",
   "scripts": {
-    "build:docs": "jsdoc -c jsdoc.json -t ./node_modules/ink-docstrap/template -R README.md -r ./src -d ./docs",
+    "build:docs": "jsdoc -c .jsdoc.json",
     "build:source": "babel src -d dist",
     "build": "npm run build:source && npm run build:docs",
     "lint": "gulp lint:js",
@@ -32,9 +32,9 @@
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "gulp-util": "^3.0.7",
-    "ink-docstrap": "^1.2.1",
     "istanbul": "^1.0.0-alpha.2",
     "jsdoc": "^3.4.0",
+    "minami": "^1.1.1",
     "mocha": "^2.4.5",
     "require-dir": "^0.3.0"
   },
