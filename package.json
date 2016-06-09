@@ -11,6 +11,7 @@
     "test": "mocha --compilers js:babel-register test/eventhandler.spec.js",
     "codecov": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha -- --recursive --check-leaks --compilers js:babel-register test/eventhandler.spec.js",
     "build-watch": "babel src -w -d dist",
+    "postinstall": "node ./scripts/postinstall.js",
     "test-watch": "mocha --watch --compilers js:babel-register test/eventhandler.spec.js"
   },
   "author": "Maxim Devoir",
