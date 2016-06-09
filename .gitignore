@@ -45,6 +45,7 @@ npm-debug.log*
 bower_components
 node_modules
 coverage
+docs
 
 # Files to ignore
 README.html
