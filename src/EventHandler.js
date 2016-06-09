@@ -11,7 +11,7 @@ class EventHandler {
     this.events = {};
     this.cluster = null;
 
-    if(toString.call(clusterContext) === "[object Object]") {
+    if (toString.call(clusterContext) === '[object Object]') {
       this.cluster = new EventCluster(this, clusterIdentifier, clusterContext);
     }
   }
@@ -50,8 +50,8 @@ class EventHandler {
   removeListener(name, fn) {
     const listeners = this.getListeners(name);
 
-    for(let i = listeners.length - 1; i >= 0; i--) {
-      if(listeners[i] === fn) {
+    for (let i = listeners.length - 1; i >= 0; i--) {
+      if (listeners[i] === fn) {
         listeners.splice(i, 1);
       }
     }
@@ -89,12 +89,12 @@ class EventHandler {
     let clusterCode = name.substring(0, '$clusterFire__'.length);
     let clusterEvent = name;
 
-    if(this.cluster && clusterCode !== '$clusterFire__') {
+    if (this.cluster && clusterCode !== '$clusterFire__') {
       this.cluster.fire(...arguments);
 
       // End execution to avoid double-execution
       return this;
-    } else if(this.cluster && clusterCode === '$clusterFire__') {
+    } else if (this.cluster && clusterCode === '$clusterFire__') {
       clusterEvent = name.slice('$clusterFire__'.length);
     }
 

@@ -18,8 +18,8 @@ class EventCluster {
      * @return {undefined} Nothing is returned
      */
     this.fire = (name, ...args) => {
-      self.cluster.forEach(function(value) {
-        if(value.events.hasOwnProperty(name)){
+      self.cluster.forEach(value => {
+        if (value.events.hasOwnProperty(name)) {
           value.fire('$clusterFire__' + name, ...args);
         }
       });
