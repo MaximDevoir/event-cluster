@@ -46,7 +46,7 @@ describe('EventHandler', () => {
     });
   });
 
-	describe('addListener', () => {
+  describe('addListener', () => {
     beforeEach(() => {
       eventHandler.addListener('foo', trueop);
       eventHandler.addListener('foo', trueop);
@@ -71,7 +71,7 @@ describe('EventHandler', () => {
         baz: [trueop]
       });
     });
-	});
+  });
 
   describe('removeListener', () => {
     beforeEach(() => {
@@ -189,7 +189,7 @@ describe('EventHandler', () => {
      *   the way ES5 does
      */
     it('works with \'this\' context', () => {
-      let theAge = function() {
+      const theAge = function () {
         returns.push('age_' + 7 + this);
       };
 
@@ -256,7 +256,7 @@ describe('EventHandler Clustered', () => {
     });
 
     it('executes with arguments from clustered EventHandler', () => {
-      EH1.addListener('complexOp', function(...args) {
+      EH1.addListener('complexOp', function (...args) {
         returns.push(args.join(''));
       });
       EH2.fire('complexOp', null, '1', '2', '3');
