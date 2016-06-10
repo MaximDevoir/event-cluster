@@ -86,16 +86,16 @@ class EventHandler {
    * @return {EventHandler}     Returns this
    */
   fire(name, thisArg, ...args) {
-    let clusterCode = name.substring(0, '$clusterFire__'.length);
+    let clusterCode = name.substring(0, '__clusterFire__'.length);
     let clusterEvent = name;
 
-    if (this.cluster && clusterCode !== '$clusterFire__') {
+    if (this.cluster && clusterCode !== '__clusterFire__') {
       this.cluster.fire(...arguments);
 
       // End execution to avoid double-execution
       return this;
-    } else if (this.cluster && clusterCode === '$clusterFire__') {
-      clusterEvent = name.slice('$clusterFire__'.length);
+    } else if (this.cluster && clusterCode === '__clusterFire__') {
+      clusterEvent = name.slice('__clusterFire__'.length);
     }
 
     const listeners = this.getListeners(clusterEvent);

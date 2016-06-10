@@ -20,7 +20,7 @@ class EventCluster {
     this.fire = (name, ...args) => {
       self.cluster.forEach(value => {
         if (value.events.hasOwnProperty(name)) {
-          value.fire('$clusterFire__' + name, ...args);
+          value.fire('__clusterFire__' + name, ...args);
         }
       });
     };
