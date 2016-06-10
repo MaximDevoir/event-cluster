@@ -29,7 +29,7 @@ var EventCluster = function EventCluster(EventHandler, identifier, context) {
 
     self.cluster.forEach(function (value) {
       if (value.events.hasOwnProperty(name)) {
-        value.fire.apply(value, ['$clusterFire__' + name].concat(args));
+        value.fire.apply(value, ['__clusterFire__' + name].concat(args));
       }
     });
   };

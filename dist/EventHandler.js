@@ -17,7 +17,7 @@ var EventHandler = function () {
     this.events = {};
     this.cluster = null;
 
-    if (toString.call(clusterContext) === "[object Object]") {
+    if (toString.call(clusterContext) === '[object Object]') {
       this.cluster = new EventCluster(this, clusterIdentifier, clusterContext);
     }
   }
@@ -108,18 +108,18 @@ var EventHandler = function () {
       args[_key - 2] = arguments[_key];
     }
 
-    var clusterCode = name.substring(0, '$clusterFire__'.length);
+    var clusterCode = name.substring(0, '__clusterFire__'.length);
     var clusterEvent = name;
 
-    if (this.cluster && clusterCode !== '$clusterFire__') {
+    if (this.cluster && clusterCode !== '__clusterFire__') {
       var _cluster;
 
       (_cluster = this.cluster).fire.apply(_cluster, arguments);
 
       // End execution to avoid double-execution
       return this;
-    } else if (this.cluster && clusterCode === '$clusterFire__') {
-      clusterEvent = name.slice('$clusterFire__'.length);
+    } else if (this.cluster && clusterCode === '__clusterFire__') {
+      clusterEvent = name.slice('__clusterFire__'.length);
     }
 
     var listeners = this.getListeners(clusterEvent);
