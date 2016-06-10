@@ -1,6 +1,6 @@
 {
   "name": "event-cluster",
-  "version": "0.12.5",
+  "version": "0.12.6",
   "description": "A simple event handler with the ability to cluster events",
   "main": "dist/EventHandler.js",
   "scripts": {
