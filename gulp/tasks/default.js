@@ -13,7 +13,7 @@ gulp.task('lint-watch', () => {
   gulp.watch(config.js.src, ['lint:js']);
 });
 
-gulp.task("lint:js", () => {
+gulp.task('lint:js', () => {
   return gulp.src(config.js.src)
     .pipe(eslint({
       fix: true
@@ -23,11 +23,11 @@ gulp.task("lint:js", () => {
     .pipe(eslint.result(function (result) {
       const {filePath, warningCount, errorCount} = result;
       const fileStatus = () => {
-        if(warningCount + errorCount === 0) {
+        if (warningCount + errorCount === 0) {
           return gutil.colors.green('GOOD');
-        } else if(errorCount) {
+        } else if (errorCount) {
           return gutil.colors.red('BAD ');
-        } else if(warningCount) {
+        } else if (warningCount) {
           return gutil.colors.yellow('WARN');
         }
 
