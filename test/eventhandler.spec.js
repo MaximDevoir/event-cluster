@@ -19,9 +19,9 @@ describe('EventHandler', () => {
   let eventHandler;
   beforeEach(() => {
     eventHandler = new EventHandler();
-  })
+  });
 
-  it("this.events setup correctly", () => {
+  it('this.events setup correctly', () => {
     eventHandler.events.should.eql({});
   });
 
@@ -56,14 +56,14 @@ describe('EventHandler', () => {
     /**
      * Ensure addListener is setup corectly.
      */
-    it("this.events setup correctly", () => {
+    it('this.events setup correctly', () => {
       eventHandler.events.should.eql({
         foo: [trueop, trueop],
         bar: [trueop]
-      })
-    })
+      });
+    });
 
-    it("puts listeners into this.events", () => {
+    it('puts listeners into this.events', () => {
       eventHandler.addListener('baz', trueop);
       eventHandler.events.should.eql({
         foo: [trueop, trueop],
@@ -73,7 +73,7 @@ describe('EventHandler', () => {
     });
 	});
 
-  describe("removeListener", () => {
+  describe('removeListener', () => {
     beforeEach(() => {
       eventHandler.addListener('foo', trueop);
       eventHandler.addListener('foo', trueop);
@@ -82,11 +82,11 @@ describe('EventHandler', () => {
       eventHandler.addListener('bar', trueop);
     });
 
-    it("this.events setup correctly", () => {
+    it('this.events setup correctly', () => {
       eventHandler.events.should.eql({
         foo: [trueop, trueop, trueop, falseop],
         bar: [trueop]
-      })
+      });
     });
 
     it('removes all instances of matching function', () => {
@@ -97,7 +97,7 @@ describe('EventHandler', () => {
       });
     });
 
-    it("removes all instances of matching function using EventListener.destroy()", () => {
+    it('removes all instances of matching function using EventListener.destroy()', () => {
       let listener = eventHandler.addListener('bar', trueop);
       eventHandler.addListener('bar', falseop);
       listener.destroy();
@@ -181,7 +181,7 @@ describe('EventHandler', () => {
     });
 
     /**
-     * This test is "hacky" as we are directly binding 'this' to the listener
+     * This test is 'hacky' as we are directly binding 'this' to the listener
      * as opposed to binding through the .addListener method. An array of issues
      * require us to use this hacky way:
      * - Eslint not supporting ES7 bind syntax (annoying warnings when linting)
@@ -228,9 +228,9 @@ describe('EventHandler Clustered', () => {
     EH2 = new EventHandler(...globalConfig);
     EH3 = new EventHandler(...globalConfigAlt);
     EH4 = new EventHandler();
-  })
+  });
 
-  it("this.events setup correctly", () => {
+  it('this.events setup correctly', () => {
     EH1.events.should.eql({});
     EH2.events.should.eql({});
     EH3.events.should.eql({});
