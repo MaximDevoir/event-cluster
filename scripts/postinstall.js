@@ -3,7 +3,6 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var path = require('path');
 var jsdocFile = path.resolve(__dirname, '..', 'node_modules', '.bin', 'jsdoc');
-console.log(jsdocFile);
 
 fs.access(jsdocFile, fs.F_OK, function(err) {
   if (err) {
