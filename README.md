@@ -61,4 +61,4 @@ To combat this error, EventHandler will internally prefix Clustered EventHandler
 
 # TODO
 * Add clustering ability to individual events.
-* Test Pipelines
+* Better documentation
