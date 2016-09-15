@@ -2,6 +2,11 @@
 
 A module to handle events written in JavaScript.
 
+# Installation
+```
+npm install bitbucket:maximdevoir/event-cluster
+```
+
 # API
 
 Start using EventHandler
