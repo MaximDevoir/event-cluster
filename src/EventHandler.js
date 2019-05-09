@@ -1,6 +1,6 @@
 /* eslint-disable prefer-rest-params */
-const EventListener = require('./EventListener')
-const EventCluster = require('./EventCluster')
+import EventListener from './EventListener'
+import EventCluster from './EventCluster'
 
 /**
  * EventHandler
