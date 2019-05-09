@@ -2,11 +2,10 @@
  * EventListener
  */
 class EventListener {
-
   constructor(EventHandler, name, fn) {
-    this.EventHandler = EventHandler;
-    this.name = name;
-    this.fn = fn;
+    this.EventHandler = EventHandler
+    this.name = name
+    this.fn = fn
   }
 
   /**
@@ -14,9 +13,9 @@ class EventListener {
    * @return {undefined}
    */
   destroy() {
-    this.EventHandler.removeListener(this.name, this.fn);
-    this.EventHandler = null;
+    this.EventHandler.removeListener(this.name, this.fn)
+    this.EventHandler = null
   }
 }
 
-module.exports = EventListener;
+module.exports = EventListener
