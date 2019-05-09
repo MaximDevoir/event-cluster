@@ -1,5 +1,7 @@
 /**
- * EventListener
+ * Every listener is wrapped in this.
+ *
+ * @class EventListener
  */
 class EventListener {
   constructor(EventHandler, name, fn) {
@@ -10,6 +12,7 @@ class EventListener {
 
   /**
    * Destroys the listener from the applied EventListener
+   *
    * @return {undefined}
    */
   destroy() {
