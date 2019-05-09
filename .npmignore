@@ -10,6 +10,7 @@ tests/
 .gitattributes
 .nvmrc
 .nycrc
+.eslintignore
 
 # webpack config
 webpack.config.js
