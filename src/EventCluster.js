@@ -1,7 +1,6 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable prefer-const */
 /* eslint-disable no-param-reassign */
-const { hasOwnProperty } = Object.prototype
 
 /**
  * EventCluster
