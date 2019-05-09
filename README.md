@@ -114,7 +114,3 @@ The handler will attach itself to the `window` under the `prompt` key. However,
 To combat this error, EventHandler will internally prefix Clustered
 EventHandlers with `__clusterFire__`. Example, when attaching to `window` it
 would be `window.__clusterFire__prompt`.
-
-## TODO
-
-* Add clustering ability to individual events.
