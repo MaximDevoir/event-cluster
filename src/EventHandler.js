@@ -1,5 +1,4 @@
 /* eslint-disable prefer-rest-params */
-/* eslint-disable no-return-assign */
 const EventListener = require('./EventListener')
 const EventCluster = require('./EventCluster')
 
@@ -36,6 +35,7 @@ class EventHandler {
    * @return {Array}       Listeners of event
    */
   getListeners(name) {
+    // eslint-disable-next-line no-return-assign
     return this.events[name] || (this.events[name] = [])
   }
 
