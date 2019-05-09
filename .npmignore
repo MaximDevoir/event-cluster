@@ -11,8 +11,8 @@ yarn.lock
 package-lock.json
 
 
-# webpack config
-webpack.config.js
+# webpack configs
+webpack.config*
 
 # future TS typings support
 typings/

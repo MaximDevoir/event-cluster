@@ -9,8 +9,8 @@
     "email": "maximdevoir@hotmail.com"
   },
   "scripts": {
-    "build": "npm run build:clean && npm run build:source",
-    "build:source": "cross-env NODE_ENV=production webpack --progress --colors --config webpack.config.js",
+    "build": "npm run build:clean && cross-env NODE_ENV=production npm run build:source",
+    "build:source": "webpack --progress --colors --config webpack.config.babel.js",
     "build:clean": "rimraf ./lib",
     "clean": "npm run build:clean && npm run coverage:clean",
     "coverage": "npm run coverage:clean && npm run coverage:generate",
@@ -21,7 +21,8 @@
     "docs": "echo 'no documentation generation yet'",
     "lint": "eslint --ignore-path .eslintignore .",
     "lint:fix": "npm run lint -- --fix",
-    "start": "cross-env NODE_ENV=development webpack --watch --progress --colors --config webpack.config.js",
+    "start": "npm run start:once -- --watch",
+    "start:once": "cross-env NODE_ENV=development npm run build:source --",
     "test": "mocha --colors --require @babel/register tests/*.spec.js",
     "test:watch": "mocha --colors -watch --require @babel/register tests/*.spec.js"
   },
