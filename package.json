@@ -18,8 +18,8 @@
     "coverage:coveralls:report": "npm run coverage && ./node_modules/.bin/nyc report --reporter=text-lcov",
     "coverage:generate": "./node_modules/.bin/nyc --reporter=lcov --reporter=text npm test",
     "docs": "echo 'no documentation generation yet'",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint --ignore-path .eslintignore .",
+    "lint:fix": "npm run lint -- --fix",
     "start": "cross-env NODE_ENV=development webpack --watch --progress --colors --config webpack.config.js",
     "test": "mocha --colors --require @babel/register tests/*.spec.js",
     "test:watch": "mocha --colors -watch --require @babel/register tests/*.spec.js"
