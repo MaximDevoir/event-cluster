@@ -46,4 +46,4 @@ class EventCluster {
   }
 }
 
-module.exports = EventCluster
+export default EventCluster

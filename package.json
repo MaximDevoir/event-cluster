@@ -43,6 +43,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "babel-loader": "^8.0.5",
+    "babel-plugin-add-module-exports": "^1.0.2",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",

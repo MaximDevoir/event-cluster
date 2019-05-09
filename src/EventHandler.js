@@ -132,4 +132,4 @@ class EventHandler {
   }
 }
 
-module.exports = EventHandler
+export default EventHandler
