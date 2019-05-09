@@ -27,16 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maximdevoir/repo.git"
+    "url": "https://github.com/maximdevoir/event-cluster.git"
   },
   "keywords": [
     "event",
     "cluster"
   ],
   "bugs": {
-    "url": "https://github.com/maximdevoir/repo/issues"
+    "url": "https://github.com/maximdevoir/event-cluster/issues"
   },
-  "homepage": "https://github.com/maximdevoir/repo",
+  "homepage": "https://github.com/maximdevoir/event-cluster",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",
