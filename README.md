@@ -4,7 +4,7 @@ A module to handle events written in JavaScript.
 
 # Installation
 ```
-npm install bitbucket:maximdevoir/event-cluster
+npm install -D TODO:
 ```
 
 # API

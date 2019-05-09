@@ -1,53 +1,59 @@
 {
   "name": "event-cluster",
-  "version": "0.12.7",
   "description": "A simple event handler with the ability to cluster events",
-  "main": "dist/EventHandler.js",
+  "version": "0.2.0",
+  "main": "lib/event-cluster.js",
+  "license": "MIT",
+  "author": {
+    "name": "Maxim Devoir",
+    "email": "maximdevoir@hotmail.com"
+  },
   "scripts": {
-    "build:docs": "jsdoc -c .jsdoc.json",
-    "build:source": "babel src -d dist",
-    "build": "npm run build:source && npm run build:docs",
-    "lint": "gulp lint:js",
-    "test": "mocha --compilers js:babel-register test/eventhandler.spec.js",
-    "codecov": "babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha -- --recursive --check-leaks --compilers js:babel-register test/eventhandler.spec.js",
-    "build-watch": "babel src -w -d dist",
-    "postinstall": "node ./scripts/postinstall.js",
-    "test-watch": "mocha --watch --compilers js:babel-register test/eventhandler.spec.js"
+    "build": "npm run build:clean && npm run build:source",
+    "build:source": "cross-env NODE_ENV=production webpack --progress --colors --config webpack.config.js",
+    "build:clean": "rimraf ./lib",
+    "clean": "npm run build:clean && npm run coverage:clean",
+    "coverage": "npm run coverage:clean && npm run coverage:generate",
+    "coverage:clean": "rimraf ./.nyc_output && rimraf ./coverage",
+    "coverage:coveralls": "npm run coverage:coveralls:report -- | ./node_modules/.bin/coveralls",
+    "coverage:coveralls:report": "npm run coverage && ./node_modules/.bin/nyc report --reporter=text-lcov",
+    "coverage:generate": "./node_modules/.bin/nyc --reporter=lcov --reporter=text npm test",
+    "docs": "echo 'no documentation generation yet'",
+    "lint": "eslint --ignore-path .eslintignore .",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "cross-env NODE_ENV=development webpack --watch --progress --colors --config webpack.config.js",
+    "test": "mocha --colors --require @babel/register tests/*.spec.js",
+    "test:watch": "mocha --colors -watch --require @babel/register tests/*.spec.js"
   },
-  "author": "Maxim Devoir",
-  "license": "CC0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maximdevoir/repo.git"
+  },
+  "keywords": [
+    "event",
+    "cluster"
+  ],
+  "bugs": {
+    "url": "https://github.com/maximdevoir/repo/issues"
+  },
+  "homepage": "https://github.com/maximdevoir/repo",
+  "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.9.0",
-    "babel-core": "^6.9.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-es2015-loose": "^7.0.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babelify": "^7.3.0",
-    "chai": "^3.5.0",
-    "eslint": "^2.12.0",
-    "eslint-plugin-mocha": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^2.0.0",
-    "gulp-istanbul": "^1.0.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-util": "^3.0.7",
-    "istanbul": "^1.0.0-alpha.2",
-    "jsdoc": "^3.4.0",
-    "minami": "^1.1.1",
-    "mocha": "^2.5.3",
-    "require-dir": "^0.3.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015-loose",
-      "stage-0"
-    ],
-    "plugins": [
-      "add-module-exports"
-    ]
-  },
-  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2"
   }
 }
