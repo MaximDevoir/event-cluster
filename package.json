@@ -1,7 +1,7 @@
 {
   "name": "event-cluster",
   "description": "A simple event handler with the ability to cluster events",
-  "version": "0.2.2",
+  "version": "0.20.2",
   "main": "lib/event-cluster.js",
   "license": "MIT",
   "author": {
