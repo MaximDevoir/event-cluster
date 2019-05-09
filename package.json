@@ -1,7 +1,7 @@
 {
   "name": "event-cluster",
-  "description": "A simple event handler with the ability to cluster events",
-  "version": "0.20.3",
+  "description": "An event handler featuring event listening and firing, clustering of events anywhere, and the ability for multiple event-clusters to work together.",
+  "version": "0.20.4",
   "main": "lib/event-cluster.js",
   "license": "MIT",
   "author": {
@@ -27,16 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maximdevoir/repo.git"
+    "url": "https://github.com/maximdevoir/event-cluster.git"
   },
   "keywords": [
     "event",
     "cluster"
   ],
   "bugs": {
-    "url": "https://github.com/maximdevoir/repo/issues"
+    "url": "https://github.com/maximdevoir/event-cluster/issues"
   },
-  "homepage": "https://github.com/maximdevoir/repo",
+  "homepage": "https://github.com/maximdevoir/event-cluster",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",

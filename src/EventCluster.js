@@ -1,11 +1,27 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable prefer-const */
 /* eslint-disable no-param-reassign */
-const { hasOwnProperty } = Object.prototype
+
 /**
  * EventCluster
+ *
+ * TODO: Make it so you don't have to create an EventListener to fire off a
+ * cluster event. Solution?: Export EventCluster in EventHandler and a static
+ * fire function to fire an event. Example
+ * EventHandler.fireClusterEvent(clusterIdentifier, clusterContext)
+ *
+ * See https://github.com/MaximDevoir/event-cluster/issues/4
  */
 class EventCluster {
+  /**
+   * Creates an instance of EventCluster.
+   *
+   * @param {EventHandler} EventHandler A reference to the EventHandler spawned
+   * by EventCluster.
+   * @param {string} identifier An identifier for the cluster.
+   * @param {object} context The context where the cluster will be stored.
+   * @memberof EventCluster
+   */
   constructor(EventHandler, identifier, context) {
     let self = this
     this.EventHandler = EventHandler

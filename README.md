@@ -1,70 +1,120 @@
 # Event Cluster
 
-A module to handle events written in JavaScript.
+> An event handler featuring event listening and firing, clustering of events
+> anywhere, and the ability for multiple event-clusters to work together.
 
-# Installation
+[![license](https://badgen.net/badge/license/MIT/blue)](https://www.npmjs.com/package/event-cluster)
+[![bundlephobia minzip](https://badgen.net/bundlephobia/minzip/event-cluster)](https://bundlephobia.com/result?p=event-cluster)
+[![npm dependents](https://badgen.net/npm/dependents/event-cluster)](https://www.npmjs.com/package/event-cluster?activeTab=dependents)
+[![downloads](https://badgen.net/npm/dt/event-cluster)](https://www.npmjs.com/package/event-cluster)
+[![Coverage Status](https://coveralls.io/repos/github/MaximDevoir/event-cluster/badge.svg?branch=master)](https://coveralls.io/github/MaximDevoir/event-cluster?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/MaximDevoir/event-cluster/badge.svg)](https://snyk.io/test/github/MaximDevoir/event-cluster)
 
+## Installation
+
+```shell
+yarn add event-cluster
 ```
-yard add -D event-cluster
-```
 
-# API
+## Usage
 
 Start using EventHandler
 
-```
-import EventHandler from 'event-cluster';
-const MyHandler = new EventHandler();
-```
+```javascript
+import EventHandler from 'event-cluster'
 
-Start listening to an event with `.addListener`.
-```
+const MyHandler = new EventHandler()
+
+// Begin listening to an event with `.addListener`.
+
 MyHandler.addListener('eventName', ...args => {
-  console.log(args);
-});
+  console.log(args)
+})
+
+// To call onto event listeners use the `.fire` method.
+
+MyHandler.fire('eventName', thisArg, ...args)
+
+// `thisArg` is not required but you will have to pass in undefined when you
+// don't want to provide context.
+
+MyHandler.fire('eventName', undefined, ...args)
 ```
 
-To call onto the listeners use the `.fire` method.
+## API
+
+### EventHandler
+
+`EventHandler(?clusterIdentifier, ?clusterContext)`
+
+`.getListeners(name)`: Get an array of functions assigned to an event. If the
+event does not exist, it is created.
+
+`.addListener(name, fn, context)`: Add a function to listen for an event.
+
+`.removeListener(name, fn)`: Removes all instances of the listener, `fn`, from
+event `name`.
+
+`.removeEvent(name)`: Removes all listeners from and event `name`.
+
+`.removeAllEvents()`: Resets all listeners.
+
+`.fire(name, thisArg, ...args)`: Fires an event `name`, where all functions
+listening to the event will be `.called(thisArg, args)`.
+
+## Event Clustering
+
+A big feature of EventHandler is its ability to cluster with other
+EventHandlers. A common use case would be when you want multiple EventHandlers
+in different locations, or contexts, to share their events.
+
+To do this you must pass in a `clusterIdentifier`, a name for the cluster, and
+`clusterContext`, an object the EventHandlers can attach to.
+
+```javascript
+// moduleA.js
+import EventHandler from 'event-cluster'
+
+const ModuleAHandler = new EventHandler('clusterName', window)
+
+ModuleAHandler.addListener('theEvent', postMessage => {
+  console.log(`Event fired - module A. ${postMessage}`)
+})
+
+
+// moduleB.js
+import EventHandler from 'event-cluster'
+
+const ModuleBHandler = new EventHandler('clusterName', window)
+
+ModuleBHandler.addListener('theEvent', postMessage => {
+  console.log(`Event fired - module B. ${postMessage}`)
+})
+
+// From somewhere else in the codebase
+EventHandler(...).fire('theEvent', 'Awesome!')
+
+// log =>  Event fired - module A. Awesome!
+// log =>  Event fired - module B. Awesome!
 ```
-MyHandler.fire('eventName', thisArg, ...args);
-```
 
-`thisArg` is not required but you will have to pass in undefined when you don't want to provide context.
-```
-MyHandler.fire('eventName', undefined, ...args);
-```
+### Behind the Scenes
 
-
-# Event Clustering
-A big feature of EventHandler is its ability to cluster with other EventHandlers.
-An example of when you would want to cluster EventHandlers is when the EventHandlers are instantiated in different contexts and you want the EventHandlers to share their events.
-To do this you must pass in a `clusterIdentifier`, a name for the cluster, and `clusterContext`, an object the EventHandlers can attatch to.
-```
-// new EventHandler(clusterIdentifier, clusterContext);
-
-// somewhere in the codebase
-import EventHandler from 'event-cluster';
-const MyHandler = new EventHandler('clusterName', window);
-
-// somewhere else in the codebase
-import EventHandler from 'event-cluster';
-const MyHandler1 = new EventHandler('clusterName', window);
-
-```
-
-Now, when you fire from `MyHandler` it will fire not just the listeners of `MyHandler` but also `MyHandler1` and any other handlers in the cluster.
-
-## Behind the Scenes
 What does the module do with `clusterContext`.
+
+```javascript
+import EventHandler from 'event-cluster'
+
+const Handler = new EventHandler('prompt', window)
 ```
-import EventHandler from 'event-cluster';
-const Handler = new EventHandler('prompt', window);
-```
 
-The handler will attatch istelf to the `window` under the `prompt` key. However, 'prompt' is already a part of the window object.
+The handler will attach itself to the `window` under the `prompt` key. However,
+'prompt' is already a part of the window object.
 
-To combat this error, EventHandler will internally prefix Clustered EventHandlers with `__clusterFire__`. Example, when attatching to `window` it would be `window.__clusterFire__prompt`.
+To combat this error, EventHandler will internally prefix Clustered
+EventHandlers with `__clusterFire__`. Example, when attaching to `window` it
+would be `window.__clusterFire__prompt`.
 
-# TODO
+## TODO
+
 * Add clustering ability to individual events.
-* Better documentation

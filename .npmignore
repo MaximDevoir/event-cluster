@@ -4,13 +4,12 @@ src/
 tests/
 
 # dot files
-.babelrc
-.editorconfig
-.eslintrc.json
-.gitattributes
-.nvmrc
-.nycrc
-.eslintignore
+.*
+
+# Package locks
+yarn.lock
+package-lock.json
+
 
 # webpack config
 webpack.config.js
