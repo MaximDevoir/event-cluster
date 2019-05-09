@@ -1,10 +1,11 @@
-# EventHandler
+# Event Cluster
 
 A module to handle events written in JavaScript.
 
 # Installation
+
 ```
-npm install -D TODO:
+yard add -D event-cluster
 ```
 
 # API
