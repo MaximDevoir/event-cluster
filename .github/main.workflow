@@ -47,7 +47,7 @@ action "branch.test.node.10" {
 action "branch.coveralls.node.10" {
   needs = "branch.install.node.10"
   uses = "actions/npm@master"
-  args = "run coveralls"
+  args = "run coverage:coveralls"
   secrets = ["COVERALLS_REPO_TOKEN"]
   env = {
     COVERALLS_SERVICE_NAME = "Github Actions"
@@ -136,7 +136,7 @@ action "pr.test.node.10" {
 action "pr.coveralls.node.10" {
   needs = "pr.install.node.10"
   uses = "actions/npm@master"
-  args = "run coveralls"
+  args = "run coverage:coveralls"
   secrets = ["COVERALLS_REPO_TOKEN"]
   env = {
     COVERALLS_SERVICE_NAME = "Github Actions"
