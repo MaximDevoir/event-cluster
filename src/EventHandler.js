@@ -3,8 +3,6 @@
 const EventListener = require('./EventListener')
 const EventCluster = require('./EventCluster')
 
-const { toString } = Object.prototype
-
 /**
  * EventHandler
  *
@@ -22,7 +20,10 @@ class EventHandler {
     this.events = {}
     this.cluster = null
 
-    if (toString.call(clusterContext) === '[object Object]') {
+    if (typeof clusterContext === 'object'
+      && clusterContext != null
+      && Array.isArray(clusterContext) === false
+    ) {
       this.cluster = new EventCluster(this, clusterIdentifier, clusterContext)
     }
   }
