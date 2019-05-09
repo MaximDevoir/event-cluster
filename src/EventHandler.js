@@ -1,18 +1,20 @@
-const EventListener = require('./EventListener');
-const EventCluster = require('./EventCluster');
-const toString = Object.prototype.toString;
+/* eslint-disable prefer-rest-params */
+/* eslint-disable no-return-assign */
+const EventListener = require('./EventListener')
+const EventCluster = require('./EventCluster')
+
+const { toString } = Object.prototype
 
 /**
  * EventHandler
  */
 class EventHandler {
-
   constructor(clusterIdentifier, clusterContext) {
-    this.events = {};
-    this.cluster = null;
+    this.events = {}
+    this.cluster = null
 
     if (toString.call(clusterContext) === '[object Object]') {
-      this.cluster = new EventCluster(this, clusterIdentifier, clusterContext);
+      this.cluster = new EventCluster(this, clusterIdentifier, clusterContext)
     }
   }
 
@@ -23,7 +25,7 @@ class EventHandler {
    * @return {Array}       Listeners of event
    */
   getListeners(name) {
-    return this.events[name] || (this.events[name] = []);
+    return this.events[name] || (this.events[name] = [])
   }
 
   /**
@@ -34,11 +36,11 @@ class EventHandler {
    * @return {EventListener}   Returns this
    */
   addListener(name, fn, context) {
-    const listeners = this.getListeners(name);
+    const listeners = this.getListeners(name)
 
-    fn.bind(context);
-    listeners.push(fn);
-    return new EventListener(this, name, fn);
+    fn.bind(context)
+    listeners.push(fn)
+    return new EventListener(this, name, fn)
   }
 
   /**
@@ -48,14 +50,15 @@ class EventHandler {
    * @return {EventHandler}  Returns this
    */
   removeListener(name, fn) {
-    const listeners = this.getListeners(name);
+    const listeners = this.getListeners(name)
 
-    for (let i = listeners.length - 1; i >= 0; i--) {
+    for (let i = listeners.length - 1; i >= 0; i -= 1) {
       if (listeners[i] === fn) {
-        listeners.splice(i, 1);
+        listeners.splice(i, 1)
       }
     }
-    return this;
+
+    return this
   }
 
   /**
@@ -64,8 +67,8 @@ class EventHandler {
    * @return {EventHandler} Returns this
    */
   removeEvent(name) {
-    delete this.events[name];
-    return this;
+    delete this.events[name]
+    return this
   }
 
   /**
@@ -73,8 +76,8 @@ class EventHandler {
    * @return {EventHandler} Returns this
    */
   removeAllEvents() {
-    this.events = {};
-    return this;
+    this.events = {}
+    return this
   }
 
   /**
@@ -86,24 +89,27 @@ class EventHandler {
    * @return {EventHandler}     Returns this
    */
   fire(name, thisArg, ...args) {
-    let clusterCode = name.substring(0, '__clusterFire__'.length);
-    let clusterEvent = name;
+    const clusterCode = name.substring(0, '__clusterFire__'.length)
+    let clusterEvent = name
 
     if (this.cluster && clusterCode !== '__clusterFire__') {
-      this.cluster.fire(...arguments);
+      this.cluster.fire(...arguments)
 
       // End execution to avoid double-execution
-      return this;
-    } else if (this.cluster && clusterCode === '__clusterFire__') {
-      clusterEvent = name.slice('__clusterFire__'.length);
+      return this
     }
 
-    const listeners = this.getListeners(clusterEvent);
-    listeners.forEach(listener => {
-      listener.apply(thisArg, args);
-    });
-    return this;
+    if (this.cluster && clusterCode === '__clusterFire__') {
+      clusterEvent = name.slice('__clusterFire__'.length)
+    }
+
+    const listeners = this.getListeners(clusterEvent)
+
+    listeners.forEach((listener) => {
+      listener.apply(thisArg, args)
+    })
+    return this
   }
 }
 
-module.exports = EventHandler;
+module.exports = EventHandler

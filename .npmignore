@@ -1,2 +1,22 @@
-node_modules
-coverage
+.github/
+.vscode/
+src/
+tests/
+
+# dot files
+.babelrc
+.editorconfig
+.eslintrc.json
+.gitattributes
+.nvmrc
+.nycrc
+
+# webpack config
+webpack.config.js
+
+# future TS typings support
+typings/
+
+# coverage
+.nyc_output/
+coverage/
