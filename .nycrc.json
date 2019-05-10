@@ -5,6 +5,5 @@
     "branches": [95, 100],
     "statements": [95, 100]
   },
-  "exclude": [
-  ]
+  "exclude": []
 }

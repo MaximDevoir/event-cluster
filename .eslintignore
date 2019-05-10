@@ -1,1 +1,4 @@
-lib/
+/coverage/*
+/lib/**
+/node_modules/**
+!.babelrc.js

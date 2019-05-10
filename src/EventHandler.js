@@ -1,6 +1,6 @@
 /* eslint-disable prefer-rest-params */
-import EventListener from './EventListener'
-import EventCluster from './EventCluster'
+import EventListener from 'EventListener'
+import EventCluster from 'EventCluster'
 
 /**
  * EventHandler

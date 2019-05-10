@@ -1,6 +1,6 @@
 /* eslint max-nested-callbacks: [1, 5] */
 import chai from 'chai'
-import EventHandler from '../src/EventHandler'
+import EventHandler from 'EventHandler'
 
 chai.should()
 

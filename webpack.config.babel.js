@@ -40,13 +40,16 @@ export default {
         use: {
           loader: 'eslint-loader',
           options: {
-            configFile: path.join(__dirname, '.eslintrc.json')
+            configFile: path.join(__dirname, '.eslintrc.js')
           }
         }
       }
     ]
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    modules: [
+      path.resolve(__dirname, 'src'),
+      'node_modules'
+    ]
   }
 }
