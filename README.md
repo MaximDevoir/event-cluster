@@ -92,7 +92,7 @@ ModuleBHandler.addListener('theEvent', postMessage => {
 })
 
 // From somewhere else in the codebase
-EventHandler(...).fire('theEvent', 'Awesome!')
+EventHandler(...).fire('theEvent', undefined, 'Awesome!')
 
 // log =>  Event fired - module A. Awesome!
 // log =>  Event fired - module B. Awesome!

@@ -21,4 +21,4 @@ class EventListener {
   }
 }
 
-module.exports = EventListener
+export default EventListener

@@ -1,12 +1,12 @@
-const path = require('path')
-const pkg = require('./package.json')
+import path from 'path'
+import pkg from './package.json'
 
 const isProduction = process.env.NODE_ENV === 'production'
 const libraryName = pkg.name
 
 process.stdout.write(`\nisProduction: ${isProduction}\n`)
 
-module.exports = {
+export default {
   entry: path.join(__dirname, 'src', 'EventHandler.js'),
   mode: isProduction ? 'production' : 'development',
   optimization: {
@@ -40,13 +40,16 @@ module.exports = {
         use: {
           loader: 'eslint-loader',
           options: {
-            configFile: path.join(__dirname, '.eslintrc.json')
+            configFile: path.join(__dirname, '.eslintrc.js')
           }
         }
       }
     ]
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    modules: [
+      path.resolve(__dirname, 'src'),
+      'node_modules'
+    ]
   }
 }
