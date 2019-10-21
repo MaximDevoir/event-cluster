@@ -114,3 +114,11 @@ The handler will attach itself to the `window` under the `prompt` key. However,
 To combat this error, EventHandler will internally prefix Clustered
 EventHandlers with `__clusterFire__`. Example, when attaching to `window` it
 would be `window.__clusterFire__prompt`.
+
+## Contributing
+
+### Cutting a Release
+
+The release workflow will automatically publish to NPM when you publish a
+release via the [GitHub
+UI](https://help.github.com/en/github/administering-a-repository/creating-releases)

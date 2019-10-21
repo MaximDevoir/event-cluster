@@ -1,0 +1,31 @@
+name: Node CI
+on: [push, pull_request]
+env:
+  CI: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: install & build
+        run: |
+          yarn install --frozen-lockfile
+          yarn run build
+      - name: test
+        run: |
+          yarn run test
+          yarn run coverage
+      - name: coveralls
+        run: npm run coverage:coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          COVERALLS_SERVICE_NAME: Github Actions
+      - name: lint
+        run: yarn run lint
+      - name: publish dry-run
+        run: npm publish --dry-run
